@@ -9,7 +9,8 @@
 		"cf-typegen": "wrangler types --env-interface CloudflareBindings",
 		"migrate:dev": "wrangler d1 migrations apply kcc-chatbot",
 		"migrate:prod": "wrangler d1 migrations apply kcc-chatbot --remote",
-		"format": "prettier --write \"src/**/*.{ts,js}\""
+		"format": "prettier --write \"src/**/*.{ts,js}\"",
+		"setup": "node ./scripts/setup.js"
 	},
 	"devDependencies": {
 		"@cloudflare/vitest-pool-workers": "^0.8.19",
