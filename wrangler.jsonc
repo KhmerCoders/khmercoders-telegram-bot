@@ -9,5 +9,17 @@
 	"compatibility_date": "2025-07-12",
 	"observability": {
 		"enabled": true
-	}
+	},
+	"d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "kcc-chatbot",
+      "database_id": "48058eec-0cb2-42e7-a166-6bc3cca3c686",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "ai": {
+    "binding": "AI"
+  }
+
 }

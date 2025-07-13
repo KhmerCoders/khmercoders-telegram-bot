@@ -3,16 +3,22 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
-		"deploy": "wrangler deploy",
-		"dev": "wrangler dev",
-		"start": "wrangler dev",
+		"deploy": "wrangler deploy --minify",
+		"dev": "wrangler dev --local",
 		"test": "vitest",
-		"cf-typegen": "wrangler types"
+		"cf-typegen": "wrangler types --env-interface CloudflareBindings",
+		"migrate:dev": "wrangler d1 migrations apply kcc-chatbot",
+		"migrate:prod": "wrangler d1 migrations apply kcc-chatbot --remote",
+		"format": "prettier --write \"src/**/*.{ts,js}\""
 	},
 	"devDependencies": {
 		"@cloudflare/vitest-pool-workers": "^0.8.19",
+		"prettier": "3.6.2",
 		"typescript": "^5.5.2",
 		"vitest": "~3.2.0",
 		"wrangler": "^4.24.3"
+	},
+	"dependencies": {
+		"grammy": "^1.37.0"
 	}
 }
