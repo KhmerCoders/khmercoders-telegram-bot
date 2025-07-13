@@ -1,18 +1,23 @@
-/**
- * Welcome to Cloudflare Workers! This is your first worker.
- *
- * - Run `npm run dev` in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run `npm run deploy` to publish your worker
- *
- * Bind resources to your worker in `wrangler.jsonc`. After adding bindings, a type definition for the
- * `Env` object can be regenerated with `npm run cf-typegen`.
- *
- * Learn more at https://developers.cloudflare.com/workers/
- */
+import { Bot, webhookCallback } from 'grammy';
+import commands from './commands';
+
+export interface Env {
+  BOT_TOKEN: string;
+}
 
 export default {
-	async fetch(request, env, ctx): Promise<Response> {
-		return new Response('Hello World!');
-	},
+  async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
+    const bot = new Bot(env.BOT_TOKEN);
+
+    commands(bot);
+
+    await bot.api.setMyCommands([
+      { command: 'help', description: 'Show help text' },
+      { command: 'ping', description: `🏓 Check if I'm alive` },
+      { command: 'summary', description: `📝 Summarize recent chat messages` },
+      { command: 'link', description: `🔗 Link your Telegram account (private messages only)` },
+    ]);
+
+    return webhookCallback(bot, 'cloudflare-mod')(request);
+  },
 } satisfies ExportedHandler<Env>;
