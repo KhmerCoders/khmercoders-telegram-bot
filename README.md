@@ -1,3 +1,6 @@
+> [!NOTE]
+> This repo is a work in progress...
+
 # KhmerCoders Telegram Bot
 
 ## Introduction
@@ -15,8 +18,8 @@ Before running the bot, ensure you have Node.js and npm installed.
 1. **Clone the Repository**:
 
    ```bash
-   git clone https://github.com/KhmerCoders/khmercoders-bot-telegram.git
-   cd khmercoders-bot-telegram
+   git clone https://github.com/KhmerCoders/khmercoders-telegram-bot.git
+   cd khmercoders-telegram-bot
    ```
 
 2. **Install Dependencies**:
