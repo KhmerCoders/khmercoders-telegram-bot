@@ -9,14 +9,21 @@ export interface Env {
 
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-    // const bot = new Bot(env.BOT_TOKEN);
     const url = new URL(request.url);
-
     const WEBHOOK_PATH = '/webhook/telegram';
 
     // Check if the request path matches your webhook path
     if (url.pathname === WEBHOOK_PATH) {
       const bot = new Bot(env.BOT_TOKEN);
+
+      commands(bot);
+
+      await bot.api.setMyCommands([
+        { command: 'help', description: 'Show help text' },
+        { command: 'ping', description: `🏓 Check if I'm alive` },
+        { command: 'summary', description: `📝 Summarize recent chat messages` },
+        { command: 'link', description: `🔗 Link your Telegram account (private messages only)` },
+      ]);
 
       // Register the message counter middleware
       bot.use(async (ctx, next) => {
@@ -54,15 +61,6 @@ export default {
 
         await next();
       });
-
-      commands(bot);
-
-      await bot.api.setMyCommands([
-        { command: 'help', description: 'Show help text' },
-        { command: 'ping', description: `🏓 Check if I'm alive` },
-        { command: 'summary', description: `📝 Summarize recent chat messages` },
-        { command: 'link', description: `🔗 Link your Telegram account (private messages only)` },
-      ]);
 
       // Process the webhook update
       const handleUpdate = webhookCallback(bot, 'cloudflare-mod');
