@@ -147,6 +147,8 @@ export async function fetchRecentMessages(
       .bind(...params)
       .all();
 
+    console.log(`[${timestamp}] Successfully fetched messages for summarization!`);
+
     return messages.results as Array<{
       message_text: string;
       sender_name: string;

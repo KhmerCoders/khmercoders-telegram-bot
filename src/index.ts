@@ -7,6 +7,7 @@ import { isServiceMessage } from './utils/utils';
 export interface Env {
   BOT_TOKEN: string;
   DB: D1Database;
+  AI: Ai;
   DEV_MODE?: string;
 }
 
