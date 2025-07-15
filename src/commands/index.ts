@@ -3,6 +3,7 @@ import start from './start';
 import ping from './ping';
 import help from './help';
 import summary from './summary';
+import link from './link';
 
 const withLogging = (commandName: string, commandFn: (bot: Bot) => void) => (bot: Bot) => {
   bot.use(async (ctx: Context, next) => {
@@ -22,4 +23,5 @@ export default (bot: Bot) => {
   withLogging('ping', ping)(bot);
   withLogging('help', help)(bot);
   withLogging('summary', summary)(bot);
+  withLogging('link', link)(bot);
 };

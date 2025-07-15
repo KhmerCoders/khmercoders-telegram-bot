@@ -16,6 +16,10 @@ export default (bot: Bot) => {
       console.warn(
         `[${timestamp}] Ignored /summary command in non-supergroup chat: ${message.chat.type}`
       );
+      ctx.reply(`Sorry, <b>/summary</b> command only available on KhmerCoders Chat.`, {
+        reply_parameters: { message_id: ctx.message.message_id },
+        parse_mode: 'HTML',
+      });
       return;
     }
 
@@ -47,7 +51,6 @@ export default (bot: Bot) => {
 
     ctx.reply(summaryText, {
       reply_parameters: { message_id: ctx.message.message_id },
-      parse_mode: 'HTML',
     });
 
     console.log(
