@@ -88,7 +88,7 @@ export async function recordTelegramChannelMessage(
         message.text || '',
         messageDate,
         mediaType,
-        forwardedFrom,
+        forwardedFrom || '',
         replyToMessageId,
         messageThreadId
       )

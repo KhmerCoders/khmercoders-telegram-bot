@@ -22,7 +22,7 @@ This is a bot designed for the Khmer Coders telegram community. Its primary func
    npm install
    ```
 
-3. Setting Up:
+3. Setting Up for Development:
 
    ```bash
    npm run setup
@@ -30,6 +30,7 @@ This is a bot designed for the Khmer Coders telegram community. Its primary func
 
 > [!IMPORTANT]
 > Replace `YOUR_TELEGRAM_BOT_TOKEN_HERE` with your Bot Token in `.dev.vars`.
+> In production, please set `DEV_MODE` to `0`. Or don't add `DEV_MODE` to your enviroment variable at all.
 
 ### Start Development Server
 

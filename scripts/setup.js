@@ -14,7 +14,9 @@ const updateEnvFile = () => {
     }
 
     // Create the .dev.vars content with all required variables
-    const envContent = `BOT_TOKEN="YOUR_TELEGRAM_BOT_TOKEN_HERE"`;
+    const envContent = `
+    BOT_TOKEN="YOUR_TELEGRAM_BOT_TOKEN_HERE"
+    DEV_MODE=1`;
 
     // Write the content to .dev.vars file (only if it doesn't exist)
     fs.writeFileSync(envPath, envContent);

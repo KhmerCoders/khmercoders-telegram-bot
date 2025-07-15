@@ -29,7 +29,7 @@ export async function countUserMessage(
     // First ensure the user exists in the users table
     await db
       .prepare(
-        `INSERT OR IGNORE INTO users (platform, user_id, display_name) 
+        `INSERT OR IGNORE INTO users (platform, user_id, display_name)
        VALUES (?, ?, ?)`
       )
       .bind(platform, userId, displayName)
@@ -43,7 +43,7 @@ export async function countUserMessage(
         `INSERT INTO chat_counter (chat_date, platform, user_id, message_count, message_length)
        VALUES (?, ?, ?, 1, ?)
        ON CONFLICT (chat_date, platform, user_id)
-       DO UPDATE SET 
+       DO UPDATE SET
          message_count = message_count + 1,
          message_length = message_length + ?`
       )

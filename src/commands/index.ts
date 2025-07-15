@@ -8,7 +8,8 @@ const withLogging = (commandName: string, commandFn: (bot: Bot) => void) => (bot
     if (ctx.message?.text?.startsWith(`/${commandName}`)) {
       const userId = ctx.from?.id;
       const username = ctx.from?.username;
-      console.log(`Command: /${commandName}, Called by: ${username || userId}`);
+      const timestamp = new Date().toISOString();
+      console.log(`[${timestamp}] Command: /${commandName}, Called by: ${username || userId}`);
     }
     await next();
   });
