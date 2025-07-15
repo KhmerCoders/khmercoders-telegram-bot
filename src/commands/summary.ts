@@ -51,6 +51,7 @@ export default (bot: Bot) => {
 
     ctx.reply(summaryText, {
       reply_parameters: { message_id: ctx.message.message_id },
+      parse_mode: 'HTML',
     });
 
     console.log(

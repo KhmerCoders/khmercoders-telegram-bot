@@ -50,16 +50,20 @@ export default {
         const displayName =
           message.from.first_name + (message.from.last_name ? ` ${message.from.last_name}` : '');
         const messageLength = message.text.length;
+        const chatType = message.chat.type;
 
-        try {
-          // Count every message in supergroup chats
-          await countUserMessage(env.DB, 'telegram', userId, displayName, messageLength);
+        // Proccess count and record message only in group chats
+        if (chatType === 'group' || chatType === 'supergroup') {
+          try {
+            // Count every message in supergroup chats
+            await countUserMessage(env.DB, 'telegram', userId, displayName, messageLength);
 
-          // Record every message in supergroup chats
-          const isDevMode = env.DEV_MODE === '1';
-          await recordTelegramMessage(env.DB, message, isDevMode);
-        } catch (error) {
-          console.error('Error counting or recording user message:', error);
+            // Record every message in supergroup chats
+            const isDevMode = env.DEV_MODE === '1';
+            await recordTelegramMessage(env.DB, message, isDevMode);
+          } catch (error) {
+            console.error('Error counting or recording user message:', error);
+          }
         }
 
         await next();
