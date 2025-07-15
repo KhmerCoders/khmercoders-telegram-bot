@@ -20,6 +20,12 @@ export default {
     if (url.pathname === WEBHOOK_PATH) {
       const bot = new Bot(env.BOT_TOKEN);
 
+      // Attach the env vars to the context
+      bot.use((ctx, next) => {
+        ctx.env = env;
+        return next();
+      });
+
       commands(bot);
 
       await bot.api.setMyCommands([

@@ -38,6 +38,20 @@ export async function recordTelegramMessage(
     return;
   }
 
+  // Check blacklist for message_thread_id
+  if (message.message_thread_id) {
+    const { isTelegramThreadIdInBlacklist } = await import('./db-helpers');
+    const blacklisted = await isTelegramThreadIdInBlacklist(db, String(message.message_thread_id));
+    if (blacklisted) {
+      const timestamp = new Date().toISOString();
+      console.warn(
+        `[${timestamp}] Ignore recording message from blacklisted thread:`,
+        message.message_thread_id
+      );
+      return;
+    }
+  }
+
   const { recordTelegramChannelMessage } = await import('./telegram-helpers');
   await recordTelegramChannelMessage(db, message);
 }

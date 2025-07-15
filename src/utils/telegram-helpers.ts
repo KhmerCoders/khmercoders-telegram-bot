@@ -126,6 +126,9 @@ export async function fetchRecentMessages(
   }>
 > {
   try {
+    const timestamp = new Date().toISOString();
+    console.log(`[${timestamp}] Attempting to fetch recent messages for chat: ${chatId}`);
+
     let query = `SELECT message_text, sender_name, message_date, message_thread_id FROM telegram_channel_messages
                 WHERE chat_id = ? AND message_text != ''`;
 

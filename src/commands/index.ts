@@ -2,6 +2,7 @@ import { Bot, Context } from 'grammy';
 import start from './start';
 import ping from './ping';
 import help from './help';
+import summary from './summary';
 
 const withLogging = (commandName: string, commandFn: (bot: Bot) => void) => (bot: Bot) => {
   bot.use(async (ctx: Context, next) => {
@@ -20,4 +21,5 @@ export default (bot: Bot) => {
   withLogging('start', start)(bot);
   withLogging('ping', ping)(bot);
   withLogging('help', help)(bot);
+  withLogging('summary', summary)(bot);
 };
