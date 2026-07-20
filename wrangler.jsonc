@@ -4,7 +4,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "kcc-bot",
+	"name": "khmercoders-telegram-bot-2",
 	"main": "src/index.ts",
 	"compatibility_date": "2025-07-12",
 	"observability": {
